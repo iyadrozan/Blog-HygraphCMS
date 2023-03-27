@@ -1,38 +1,59 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+README.md
 
-## Getting Started
+# Blog dengan NextJS dan Hygraph.com
 
-First, run the development server:
+Blog ini adalah sebuah proyek yang menggunakan NextJS sebagai framework front-end dan Hygraph.com sebagai platform back-end. Blog ini menampilkan artikel-artikel yang ditulis oleh penulis dan disimpan di Hygraph.com. Blog ini juga memiliki fitur pencarian, kategori, komentar, dan pagination.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+## Cara Menjalankan
+
+Untuk menjalankan blog ini, Anda perlu menginstal Node.js dan npm terlebih dahulu. Kemudian, Anda perlu mengkloning repositori ini ke komputer Anda. Setelah itu, Anda perlu mengatur variabel lingkungan berikut:
+
+- NEXT_PUBLIC_HYGRAPH_API_KEY: API key yang diberikan oleh Hygraph.com untuk mengakses data Anda.
+- NEXT_PUBLIC_HYGRAPH_COLLECTION: Nama koleksi yang berisi artikel-artikel Anda di Hygraph.com.
+
+Anda dapat mengatur variabel lingkungan ini di file .env.local yang berada di root folder proyek. Contoh file .env.local:
+
+```
+NEXT_PUBLIC_HYGRAPH_API_KEY=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+NEXT_PUBLIC_HYGRAPH_COLLECTION=blog
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Setelah mengatur variabel lingkungan, Anda dapat menjalankan blog ini dengan perintah berikut:
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+```
+npm install
+npm run dev
+```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+Blog ini akan berjalan di http://localhost:3000.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Cara Menulis Artikel
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Untuk menulis artikel, Anda perlu membuat dokumen baru di koleksi yang Anda tentukan di Hygraph.com. Dokumen tersebut harus memiliki struktur sebagai berikut:
 
-## Learn More
+```
+{
+"title": "Judul artikel",
+"slug": "slug-artikel",
+"content": "Isi artikel dalam format Markdown",
+"category": "Kategori artikel",
+"date": "Tanggal artikel dalam format ISO 8601",
+"image": "URL gambar utama artikel"
+}
+```
 
-To learn more about Next.js, take a look at the following resources:
+Contoh dokumen:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+{
+"title": "Mengenal NextJS",
+"slug": "mengenal-nextjs",
+"content": "# NextJS\n\nNextJS adalah sebuah framework React yang memudahkan pengembangan aplikasi web modern. NextJS memiliki fitur-fitur seperti rendering di sisi server (SSR), rendering statis (SSG), routing dinamis, optimasi gambar, dan lain-lain.",
+"category": "Teknologi",
+"date": "2021-12-01T10:00:00Z",
+"image": "https://example.com/nextjs.jpg"
+}
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Setelah membuat dokumen baru, Anda perlu menunggu beberapa saat agar dokumen tersebut terindeks oleh Hygraph.com. Kemudian, Anda dapat melihat artikel Anda di blog ini dengan mengakses URL http://localhost:3000/[slug-artikel].
+```
