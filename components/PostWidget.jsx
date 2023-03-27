@@ -9,7 +9,7 @@ const PostWidget = ({ categories, slug }) => {
     
     useEffect(() => {
         if(slug) {
-            getSimiliarPosts(category, slug)
+            getSimiliarPosts(categories, slug)
                 .then((result) => setRelatedPosts(result))
         } else {
             getRecentPost()
@@ -32,6 +32,12 @@ const PostWidget = ({ categories, slug }) => {
                             className='align-middle rounded-full'
                             src={post.featuredImage.url}
                         />
+                    </div>
+                    <div className="flex-grow ml-4">
+                        <p className='text-gray-700 font-xs'>{moment(post.createdAt).format('DD MMM, YYYY')}</p>
+                        <Link href={`/post/${post.slug}`} className='text-md'>
+                            {post.title}
+                        </Link>
                     </div>
                 </div>
             ))}
